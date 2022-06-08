@@ -1,0 +1,94 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient">
+
+		<a class="navbar-brand" >Portfolio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path("skill_manage") }}">Skills <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path("formation_manage") }}">Formations</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path("reference_manage") }}">References</a>
+				</li>
+				<li class="nav-item dropdown">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('contact') }}">Contacts</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Actions
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="{{ path("skill_create") }}">Ajouter un Skills</a>
+						<a class="dropdown-item" href="{{ path("formation_create") }}">Ajouter  une formations</a>
+						<a class="dropdown-item" href="{{ path("reference_create") }}">Ajouter une reference</a>
+					</div>
+				</li>
+			</ul>
+			{% if app.user %}
+				<a  class="btn btn-secondary btn-sm " href="{{ path("app_logout") }}">Déconnexion</a>
+			{% else %}
+				<a  class="btn btn-primary btn-sm " href="{{ path('app_login') }}">Connexion</a>
+			{% endif %}
+
+		</div>
+	</nav>
+
+
+	<div class="row row-cols-1 row-cols-md-2 g-4 h 100 mt-1 ">
+		<div class="col">
+			<div class="card bg-dark  bg-gradient h-100 text-white hover-shadow  ">
+				<div class="card-body ">
+					<img src="{{ asset('uploads/ma photo.jpg') }}" class=" img-fluid hidden-xs  rounded-circle" alt="...">
+					<h1 class="card-title  ">Sudre julien </h1>
+					<h2 class="card-subtitle ">Apprenti Administrateur Systeme <br> réseaux et Cybersécurité</h2>
+					<h4 class ="card-text ">8 rue pasiphae 34970 Lattes <i class="fa fa-home " aria-hidden="true"></i></h4>
+					<a class="h5 text-white  " href="tel:0618174583" target="_blank"><i class="fa-solid fa-phone"></i>0618174583</a><br>
+					<a class="h5 text-white "href="mailto:contact@example.com?subject=the subject&cc=cc@example.com&bcc=bcc@example.com&body=Main text of the mail" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i>Mail </a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card bg-danger bg-gradient hover-shadow text-white  h-100   ">
+				<div class="card-body">
+					<h3 class="card-title">Formations</h3>
+					<div  class="text-white" id="formations"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col ">
+			<div class="card bg-success  bg-gradient hover-shadow h-100   ">
+				<div class="card-body">
+					<h3 class="card-title">Compétences</h3>
+					<ul class="list-group h-100" id="skills"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card bg-primary bg-gradient hover-shadow h-100 ">
+				<div class="card-body">
+					<h3 class="card-title">Réferences</h3>
+					<div id="references" class="row  text-black"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	</body>
+{% endblock %}
+
