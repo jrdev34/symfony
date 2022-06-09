@@ -52,32 +52,7 @@ class AppFixtures extends Fixture
 
 
 
-        for ($i = 1; $i <= 5; $i++) {
-            $reference = new Reference();
-            $reference->setTitle("Reference " . $i);
-            $reference->setCompany("Company " . $i);
-            $reference->setDescription("Description " . $i);
-            $reference->setStartedAt(new \DateTimeImmutable("10 years ago"));
-            $reference->setEndedAt(new \DateTimeImmutable("8 years ago"));
-            $media = new Media();
-            $media->setPath("uploads/image.png");
-            $reference->addMedia($media);
-            $manager->persist($reference);
 
-            $skill = new Skill();
-            $skill->setLevel(rand(1, 10));
-            $skill->setName("Skill " . $i);
-            $manager->persist($skill);
-
-            $formation = new Formation();
-            $formation->setGradeLevel(rand(0, 5));
-            $formation->setDescription("Description " . $i);
-            $formation->setSchool("School " . $i);
-            $formation->setName("Formation " . $i);
-            $formation->setStartedAt(new \DateTimeImmutable("10 years ago"));
-            $formation->setEndedAt(new \DateTimeImmutable("8 years ago"));
-            $manager->persist($formation);
-        }
 
         $manager->flush();
     }
