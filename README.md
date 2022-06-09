@@ -1,43 +1,75 @@
-Installation
+deploiement 
 
-git clone https://github.com/jrdev34/portfolio.git
+dans notre dosiier de projet se connecter a heroku 
 
-cd portfolio
+avec la commande heroku login accepter sur le naviagteur 
 
-Créeer un fichier .en.local
+ensuite faire 
 
+git init
 
-DATABASE_URL=mysql://root:password@127.0.0.1:3306/portfolio?serverVersion=mariadb-10.4.24charset=utf8mb4"
+git add .
 
+git commit -m "initial import"
 
-MAILER_DSN=
+heroku create
 
+heroku config:set APP_ENV=prod
 
-ajouter le mailer pour envoyer des mails
+pour la base de donner j'ai utiliser cleardb 
+j'ai rentrer la DATABASE_URL en lien avec cela 
+pour ma page conatct j'ai installer l'addon mailtrap j'ai rentrer le mailer dns qui va avec 
 
+pour que les mails passe j'ai lancer cette commande 
 
-https://symfony.com/doc/current/mailer.html
-
-
-
-debugg mail php bin/console messenger:consume async
-
-composer install
-
-npm install
-
-composer prepare
-
-Configuration
+heroku run  php bin/console messenger:consume async
 
 
 
-installer le bundle Api pour créer une api
 
-Démarer le serveur
+dans composer.json 
 
-symfony serve
+j'ai mis un script 
+
+"compile": [
+            "php bin/console doctrine:schema:update -f",
+            "php bin/console doctrine:fixtures:load --no-interaction --env=PROD"
+]
 
 
-npm run dev
+
+git push heroku master
+
+ensuite creer un fichier nginx_app.conf
+
+
+location / {
+    # try to serve file directly, fallback to rewrite
+    try_files $uri @rewriteapp;
+}
+
+location @rewriteapp {
+    # rewrite all to index.php
+    rewrite ^(.*)$ /index.php/$1 last;
+}
+
+location ~ ^/index\.php(/|$) {
+    try_files @heroku-fcgi @heroku-fcgi;
+    # ensure that /index.php isn't accessible directly, but only through a rewrite
+    internal;
+}
+puis faire cela 
+
+
+echo 'web: heroku-php-nginx -C nginx_app.conf public/' > Procfile
+
+git add Procfile nginx_app.conf
+
+git commit -m "Nginx Procfile and config"
+
+git push heroku master 
+
+git push origin master 
+
+appres j'ai fait un heroku open 
 
