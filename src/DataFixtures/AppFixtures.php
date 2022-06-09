@@ -23,7 +23,10 @@ class AppFixtures extends Fixture
     /**
      * @param UserPasswordHasherInterface $hasher
      */
-    public function __construct(UserPasswordHasherInterface $hasher)
+    public
+    function __construct (
+        UserPasswordHasherInterface $hasher
+    )
     {
 
 
@@ -32,28 +35,28 @@ class AppFixtures extends Fixture
     }
 
 
-
     /**
      * @param ObjectManager $manager
      * @return void
      */
-    public function load(ObjectManager $manager): void
+    public
+    function load (
+        ObjectManager $manager
+    )
+    : void
     {
         $admin = new User();
-        $admin->setEmail("admin@email.com");
+        $admin -> setEmail ( "admin@email.com" );
 
-            $hashPassword = $this->hasher->hashPassword(
-                $admin,
-                'password'
+        $hashPassword = $this -> hasher -> hashPassword (
+            $admin ,
+            'password'
 
-            );
-             $admin->setPassword($hashPassword);
-              $manager->persist($admin);
-
-
+        );
+        $admin -> setPassword ( $hashPassword );
+        $manager -> persist ( $admin );
 
 
-
-        $manager->flush();
+        $manager -> flush ();
     }
 }
