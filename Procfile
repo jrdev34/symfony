@@ -1,2 +1,1 @@
-web: heroku-php-apache2 public/
-git add
+web: vendor/bin/heroku-php-apache2 web/
