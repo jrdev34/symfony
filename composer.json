@@ -106,7 +106,7 @@
             "@auto-scripts"
         ],
         "compile": [
-            "php bin/console doctrine:schema:update -f",
+            "php bin/console doctrine:schema:update -f"
 
         ]
     },
