@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Skill
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\SkillRepository")
- *  @ApiResource()
+ * @ApiResource()
  */
 class Skill
 {
