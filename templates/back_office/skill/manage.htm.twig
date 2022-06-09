@@ -14,6 +14,7 @@
                     <tr>
                         <th class="text-center text-uppercase">Id</th>
                         <th class="text-center text-uppercase">Nom</th>
+                        <th class="text-center text-uppercase">Niveau</th>
                         <th class="text-center text-uppercase">Actions</th>
                     </tr>
                     </thead>
@@ -22,6 +23,7 @@
                         <tr>
                             <td class="text-center align-middle">{{ skill.id }}</td>
                             <td class="text-center align-middle">{{ skill.name }}</td>
+                            <td class="text-center align-middle">{{ skill.level }}/10</td>
                             <td class="text-center align-middle">
                                 <a href="{{ path("skill_update", { id: skill.id }) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                 <a href="{{ path("skill_delete", { id: skill.id }) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
