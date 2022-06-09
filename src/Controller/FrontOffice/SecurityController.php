@@ -2,21 +2,55 @@
 
 namespace App\Controller\FrontOffice;
 
+use App\Entity\User;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
 
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    private UserPasswordHasherInterface $hasher;
 
-    #[Route(path: '/login', name: 'app_login')]
+
+    /**
+     * @param UserPasswordHasherInterface $hasher
+     */
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+
+
+        $this -> hasher = $hasher;
+
+    }
+
+
+
+
+
+        #[Route(path: '/login', name: 'app_login')]
+        /**
+         * @param AuthenticationUtils $authenticationUtils
+         * @return Response
+         */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        $admin = new User();
+        $admin->setEmail("admin@email.com");
+
+        $hashPassword = $this->hasher->hashPassword(
+            $admin,
+            'password'
+
+        );
+        $admin->setPassword($hashPassword);
+        $manager->persist($admin);
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
