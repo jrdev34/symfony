@@ -27,13 +27,7 @@ class SkillType extends AbstractType
                     "placeholder" => "Entrez le nom de la compétence..."
                 ]
             ])
-            ->add("level", RangeType::class, [
-                "label" => "Votre niveau :",
-                "attr" => [
-                    "min" => 1,
-                    "max" => 10
-                ]
-            ])
+
         ;
     }
 

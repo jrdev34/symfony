@@ -38,6 +38,7 @@ class FormationType extends AbstractType
             ->add("gradeLevel", ChoiceType::class, [
                 "label" => "Niveau d'étude",
                 "choices" => [
+                    "CAP" => -1,
                     "BAC" => 0,
                     "BAC+1" => 1,
                     "BAC+2" => 2,
